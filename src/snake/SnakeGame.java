@@ -14,6 +14,7 @@ public class SnakeGame
     private int xLen, yLen;
     private KeyDetector kd;
     private boolean alreadyTurning;
+	private Qubites qubites;
 
     public SnakeGame(int x, int y, KeyDetector kd, boolean wrap)
     {
@@ -26,15 +27,16 @@ public class SnakeGame
 		{
 			for (int j = 0; j < x; j++)
 			{
-			tiles[i][j] = new Tile(j, i);
+				tiles[i][j] = new Tile(j, i);
 			}
 		}
 		alreadyTurning = false;
 		snake = new Snake(x / 2, y / 2);
-		placeFood();
+		qubites = new Qubites();
+		placeQubites();
     }
     
-    private void placeFood()
+    private void placeQubites()
     {
 		ArrayList<Tile> empty = new ArrayList<Tile>();
 		for (int y = 0; y < yLen; y++)
@@ -42,7 +44,8 @@ public class SnakeGame
 			for (int x = 0; x < xLen; x++)
 			{
 				//checks if the tile is empty, will need to change once more types of consumables are added
-				if (!snake.checkForSnake(x, y) && !tiles[y][x].hasFood())
+				//also check for wormholes
+				if (!snake.checkForSnake(x, y))
 				{
 					empty.add(tiles[y][x]);
 				}
@@ -50,7 +53,13 @@ public class SnakeGame
 		}
 		if (empty.size() == 0) return;
 		int randomIndex = (int)(Math.random() * empty.size());
-		empty.get(randomIndex).setFood(true);
+		Tile positive = empty.get(randomIndex);
+		empty.remove(randomIndex);
+
+		randomIndex = (int)(Math.random() * empty.size());
+		Tile negative = empty.get(randomIndex);
+
+		qubites.bindQubitesToTiles(positive, negative);
     }
     
     public void controlSnake()
@@ -62,31 +71,35 @@ public class SnakeGame
     public void update()
     {
 		//update the position of the snake
-		
+		//check if the snake died
 		Position headPos = snake.move();
 		alreadyTurning = false;
-
 		if (headPos.x < 0 || headPos.x >= xLen || headPos.y < 0 || headPos.y >= yLen)
 		{
 			dead();
 		}
 		ArrayList<Position> body = snake.getBody();
+		if (body.size() == 0) dead();
 		for (int i = 1; i < body.size(); i++)
 		{
 			if (headPos.x == body.get(i).x && headPos.y == body.get(i).y)
 			{
-				System.out.println("collided with " + i);
 				dead();
 			}
 		}
-		
-		if (tiles[headPos.y][headPos.x].hasFood())
+
+		int charge = qubites.hasQubite(tiles[headPos.y][headPos.x]);
+		if (charge != 0)
 		{
-			tiles[headPos.y][headPos.x].setFood(false);
-			snake.add();
-			placeFood();
-			placeFood();
+			snake.eat(charge);
 		}
+
+		if (qubites.getQubitesRemaining() == 0)
+		{
+			placeQubites();
+		}
+
+		qubites.update();
     }
     
     public BufferedImage getFrame()
@@ -101,13 +114,13 @@ public class SnakeGame
 			{
 				if ((y + x) % 2 == 1) g.setColor(ColorList.very_light_gray);
 				else g.setColor(ColorList.light_gray);
-				g.fillRect(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
-				
-				if (tiles[y][x].hasFood())
+
+				if (tiles[y][x] == qubites.getPositive() || tiles[y][x] == qubites.getNegative())
 				{
-					g.setColor(Color.blue);
-					g.fillOval((int)((tileWidth) * (x)), (int)((tileHeight) * (y)), tileWidth, tileHeight);
+					g.setColor(qubites.getQubiteColor());
 				}
+
+				g.fillRect(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 			}
 		}
 		
@@ -122,7 +135,9 @@ public class SnakeGame
 
 	private void dead()
 	{
+		//call the end game screen
 		System.out.println("You died");
+		try {Thread.sleep(5000);} catch (Exception e) {}
 		System.exit(0);
 	}
 }
