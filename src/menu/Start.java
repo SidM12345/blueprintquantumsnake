@@ -29,7 +29,7 @@ public class Start
 		// textfield.setPreferredSize(new Dimension(300, 200));
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+		panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
 		panel.setLayout(new GridLayout(0, 1));
 		panel.add(title);
 		panel.add(startButton);

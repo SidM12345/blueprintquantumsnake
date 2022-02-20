@@ -19,7 +19,7 @@ public class Display extends JPanel
 		JLabel time = stopwatch.getTimeLabel();
 		jframe.add(time, BorderLayout.NORTH);
 		jframe.setTitle("Quantum Snake Game");
-		jframe.setSize(Launcher.WIDTH + 15, Launcher.HEIGHT + 39);
+		jframe.setSize(Launcher.WIDTH + 15, Launcher.HEIGHT + 90);
 		jframe.setResizable(false);	
 		jframe.setVisible(true);	
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,5 +40,4 @@ public class Display extends JPanel
 			g.drawImage(frame, 0, 0, Launcher.WIDTH, Launcher.HEIGHT, null);
 		}
     }
-	
 }

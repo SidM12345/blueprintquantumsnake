@@ -33,6 +33,7 @@ public class SnakeGame
 			}
 		}
 		alreadyTurning = false;
+		System.out.println(y);
 		snake = new Snake(0, y / 2);
 		qubites = new Qubites();
 		placeQubites();
@@ -64,7 +65,7 @@ public class SnakeGame
 		qubites.bindQubitesToTiles(positive, negative);
     }
     
-    public void controlSnake()
+    public void controlSnake(boolean move)
     {
 		//allows the user to change the direction of the snake
 		if (!alreadyTurning) alreadyTurning = snake.changeDirection(kd.getKeys());
@@ -74,6 +75,7 @@ public class SnakeGame
     {
 		//update the position of the snake
 		//check if the snake died
+
 		Position headPos = snake.move();
 		alreadyTurning = false;
 		if (headPos.x < 0 || headPos.x >= xLen || headPos.y < 0 || headPos.y >= yLen)
@@ -138,8 +140,9 @@ public class SnakeGame
 	private void dead()
 	{
 		int score = stopwatch.getSeconds() + stopwatch.getMinutes()*60 + stopwatch.getHours()*3600;
-		System.out.println("You died, your score was" + score);
+		System.out.println("You died, your score was " + score);
 		stopwatch.end();
-		//System.exit(0);
+		try {Thread.sleep(5000);} catch (Exception ex) {}
+		System.exit(0);
 	}
 }

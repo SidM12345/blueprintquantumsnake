@@ -24,12 +24,13 @@ public class Launcher
 		SnakeGame game = new SnakeGame(40, 30, kd, false, stopwatch);
 		
 		int SPEED = 10;
-		
+		// try {Thread.sleep(5000);} catch (Exception ex) {}
 		long lastFrame = System.currentTimeMillis();
+		// System.out.println("Entering the while loop");
 		while (true)
 		{
-			game.controlSnake();
-			if (System.currentTimeMillis() - lastFrame > 100)
+			game.controlSnake(false);
+			if (System.currentTimeMillis() - lastFrame > 1000 / SPEED)
 			{
 				game.update();
 				d.bufferFrame(game.getFrame());

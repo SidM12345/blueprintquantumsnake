@@ -86,7 +86,7 @@ public class Snake
 		{
 			body.add(lastPosition);
 		}	
-		else if (charge == -1)
+		else if (charge == -1 && body.size() > 1)
 		{
 			lastPosition = body.get(body.size() - 1);
 			body.remove(lastPosition);
