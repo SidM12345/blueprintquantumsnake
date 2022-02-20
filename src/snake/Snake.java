@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Snake
 {
-    private int length;
     private ArrayList<Position> body;
     private Direction currentDirection;
     private Position lastPosition;
