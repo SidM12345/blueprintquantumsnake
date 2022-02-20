@@ -10,7 +10,7 @@ public class Launcher
     {
 	KeyDetector kd = new KeyDetector();
 	Display d = new Display(kd);
-	SnakeGame game = new SnakeGame(80, 60, kd, false);
+	SnakeGame game = new SnakeGame(40, 30, kd, false);
 	
 	int FPS = 10;
 	

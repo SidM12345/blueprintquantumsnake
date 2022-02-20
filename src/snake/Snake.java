@@ -16,24 +16,27 @@ public class Snake
 	currentDirection = Direction.RIGHT;
     }
     
-    public void changeDirection(boolean[] keys)
+    public boolean changeDirection(boolean[] keys)
     {
-	if ((keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT]) && currentDirection != Direction.LEFT)
-	{
-	    currentDirection = Direction.RIGHT;
-	}
-	if ((keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP]) && currentDirection != Direction.DOWN)
-	{
-	    currentDirection = Direction.UP;
-	}
-	if ((keys[KeyEvent.VK_A] || keys[KeyEvent.VK_LEFT]) && currentDirection != Direction.RIGHT)
-	{
-	    currentDirection = Direction.LEFT;
-	}
-	if ((keys[KeyEvent.VK_S] || keys[KeyEvent.VK_DOWN]) && currentDirection != Direction.UP)
-	{
-	    currentDirection = Direction.DOWN;
-	}
+		//returns true if snake changed direction, false if not
+		Direction previousDirection = currentDirection;
+		if ((keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT]) && currentDirection != Direction.LEFT)
+		{
+			currentDirection = Direction.RIGHT;
+		}
+		else if ((keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP]) && currentDirection != Direction.DOWN)
+		{
+			currentDirection = Direction.UP;
+		}
+		else if ((keys[KeyEvent.VK_A] || keys[KeyEvent.VK_LEFT]) && currentDirection != Direction.RIGHT)
+		{
+			currentDirection = Direction.LEFT;
+		}
+		else if ((keys[KeyEvent.VK_S] || keys[KeyEvent.VK_DOWN]) && currentDirection != Direction.UP)
+		{
+			currentDirection = Direction.DOWN;
+		}	
+		return previousDirection != currentDirection;
     }
     
     public Position move()
