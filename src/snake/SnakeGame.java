@@ -9,7 +9,6 @@ import input.KeyDetector;
 
 public class SnakeGame
 {
-    private BufferedImage frame;
     private Snake snake;
     private Tile[][] tiles;
     private int xLen, yLen;
