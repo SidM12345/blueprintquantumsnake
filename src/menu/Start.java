@@ -9,13 +9,13 @@ import java.math.*;
 import java.util.*;
 import java.lang.*;
 
-public class Start implements ActionListener {
-
+public class Start implements ActionListener
+{
 	JFrame frame;
 	JButton startButton, helpButton, quitButton;
 	JLabel title;
-	public Start() {
-		JFrame frame = new JFrame();
+	public Start() 
+	{
 		title = new JLabel("Quantum Snake Game");
 		startButton = new JButton("Start");
 		startButton.setMargin(new Insets(10,10,10,10));
@@ -48,6 +48,6 @@ public class Start implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if ()
+		
 	}
 }

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import display.Stopwatch;
 import input.KeyDetector;
-import snake.Launcher;;
 public class SnakeGame
 {
     private Snake snake;
@@ -16,12 +15,14 @@ public class SnakeGame
     private KeyDetector kd;
     private boolean alreadyTurning;
 	private Qubites qubites;
+	private Stopwatch stopwatch;
 
     public SnakeGame(int x, int y, KeyDetector kd, boolean wrap, Stopwatch stopwatch)
     {
 		xLen = x;
 		yLen = y;
 		this.kd = kd;
+		this.stopwatch = stopwatch;
 		
 		tiles = new Tile[y][x];
 		for (int i = 0; i < y; i++)
@@ -136,9 +137,9 @@ public class SnakeGame
 
 	private void dead()
 	{
-		int score = Launcher.endgame();
+		int score = stopwatch.getSeconds() + stopwatch.getMinutes()*60 + stopwatch.getHours()*3600;
 		System.out.println("You died, your score was" + score);
-		
+		stopwatch.end();
 		//System.exit(0);
 	}
 }

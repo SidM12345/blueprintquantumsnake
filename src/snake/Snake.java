@@ -11,9 +11,9 @@ public class Snake
     
     public Snake(int startX, int startY)
     {
-	body = new ArrayList<Position>();
-	body.add(new Position(startX, startY));
-	currentDirection = Direction.RIGHT;
+		body = new ArrayList<Position>();
+		body.add(new Position(startX, startY));
+		currentDirection = Direction.RIGHT;
     }
     
     public boolean changeDirection(boolean[] keys)

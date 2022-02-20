@@ -33,9 +33,4 @@ public class Launcher
 	//	    catch (Exception ex) {}
 		}
     }
-	public static int endgame () {
-		stopwatch.end();
-		return stopwatch.getSeconds() + stopwatch.getMinutes()*60 + stopwatch.getHours()*3600;
-
-	}
 }
