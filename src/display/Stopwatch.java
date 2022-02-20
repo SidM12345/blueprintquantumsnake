@@ -44,7 +44,7 @@ public class Stopwatch implements ActionListener{
 		timer.start();
 	}
 
-	void end() {
+	public void end() {
 		timer.stop();
 		elapsedTime = 0;
 		

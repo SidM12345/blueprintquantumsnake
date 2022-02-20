@@ -7,13 +7,13 @@ import input.KeyDetector;
 public class Launcher
 {
     public static final int WIDTH = 800, HEIGHT = 600;
+	public static Stopwatch stopwatch = new Stopwatch();
     public static void main(String[] args)
     {
-	Stopwatch stopwatch = new Stopwatch();
 	stopwatch.start();
 	KeyDetector kd = new KeyDetector();
 	Display d = new Display(kd, stopwatch);
-	SnakeGame game = new SnakeGame(80, 60, kd, false, stopwatch);
+	SnakeGame game = new SnakeGame(40, 30, kd, false, stopwatch);
 	
 	int FPS = 10;
 	
@@ -33,5 +33,11 @@ public class Launcher
 //	    try {Thread.sleep(1000 / FPS);}
 //	    catch (Exception ex) {}
 	}
+	
     }
+	public static int endgame () {
+		stopwatch.end();
+		return stopwatch.getSeconds() + stopwatch.getMinutes()*60 + stopwatch.getHours()*3600;
+
+	}
 }

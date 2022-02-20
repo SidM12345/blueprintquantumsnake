@@ -17,7 +17,7 @@ public class Display extends JPanel
     {
 	JFrame jframe = new JFrame();
 	JLabel time = stopwatch.getTimeLabel();
-	jframe.add(time);
+	jframe.add(time, BorderLayout.NORTH);
 	jframe.setTitle("Game");
 	jframe.setSize(Launcher.WIDTH + 15, Launcher.HEIGHT + 39);
 	jframe.setResizable(false);	
