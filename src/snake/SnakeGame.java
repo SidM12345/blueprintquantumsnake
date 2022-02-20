@@ -5,8 +5,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import display.Stopwatch;
 import input.KeyDetector;
-
+import snake.Launcher;;
 public class SnakeGame
 {
     private Snake snake;
@@ -15,7 +16,7 @@ public class SnakeGame
     private KeyDetector kd;
     private boolean alreadyTurning;
 
-    public SnakeGame(int x, int y, KeyDetector kd, boolean wrap)
+    public SnakeGame(int x, int y, KeyDetector kd, boolean wrap, Stopwatch stopwatch)
     {
 		xLen = x;
 		yLen = y;
@@ -122,7 +123,9 @@ public class SnakeGame
 
 	private void dead()
 	{
-		System.out.println("You died");
-		System.exit(0);
+		int score = Launcher.endgame();
+		System.out.println("You died, your score was" + score);
+		
+		//System.exit(0);
 	}
 }
