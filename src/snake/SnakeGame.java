@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import display.Stopwatch;
 import input.KeyDetector;
-import snake.Launcher;;
 public class SnakeGame
 {
     private Snake snake;
@@ -32,7 +31,7 @@ public class SnakeGame
 			}
 		}
 		alreadyTurning = false;
-		snake = new Snake(x / 2, y / 2);
+		snake = new Snake(0, y / 2);
 		qubites = new Qubites();
 		placeQubites();
     }
@@ -136,9 +135,7 @@ public class SnakeGame
 
 	private void dead()
 	{
-		int score = Launcher.endgame();
-		System.out.println("You died, your score was" + score);
-		
-		//System.exit(0);
+		System.out.println("You died, your score was");
+		System.exit(0);
 	}
 }
