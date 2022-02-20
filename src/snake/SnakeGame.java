@@ -33,7 +33,7 @@ public class SnakeGame
 			}
 		}
 		alreadyTurning = false;
-		snake = new Snake(x / 2, y / 2);
+		snake = new Snake(0, y / 2);
 		qubites = new Qubites();
 		placeQubites();
     }
