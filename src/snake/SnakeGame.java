@@ -49,7 +49,6 @@ public class SnakeGame
 	    }
 	}
 	int randomIndex = (int)(Math.random() * empty.size());
-	System.out.println(randomIndex);
 	empty.get(randomIndex).setFood(true);
     }
     
