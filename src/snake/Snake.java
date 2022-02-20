@@ -41,57 +41,65 @@ public class Snake
     
     public Position move()
     {
-	lastPosition = new Position(body.get(body.size() - 1));
-	for (int i = body.size() - 1; i > 0; i--)
-	{
-	    body.set(i, new Position(body.get(i - 1)));
-	}
-	
-	if (currentDirection == Direction.RIGHT)
-	{
-	    body.get(0).x++;
-	}
-	else if (currentDirection == Direction.UP) 
-	{
-	    body.get(0).y--;
-	}
-	else if (currentDirection == Direction.LEFT)
-	{
-	    body.get(0).x--;
-	}
-	else if (currentDirection == Direction.DOWN)
-	{
-	    body.get(0).y++;
-	}
+		lastPosition = new Position(body.get(body.size() - 1));
+		for (int i = body.size() - 1; i > 0; i--)
+		{
+			body.set(i, new Position(body.get(i - 1)));
+		}
 		
-	return body.get(0);
+		if (currentDirection == Direction.RIGHT)
+		{
+			body.get(0).x++;
+		}
+		else if (currentDirection == Direction.UP) 
+		{
+			body.get(0).y--;
+		}
+		else if (currentDirection == Direction.LEFT)
+		{
+			body.get(0).x--;
+		}
+		else if (currentDirection == Direction.DOWN)
+		{
+			body.get(0).y++;
+		}
+			
+		return body.get(0);
     }
     
     public boolean checkForSnake(int x, int y)
     {
-	//returns true if there is snake at x, y, false if there is not
-	for (int i = 0; i < body.size(); i++)
+		//returns true if there is snake at x, y, false if there is not
+		for (int i = 0; i < body.size(); i++)
+		{
+			if (body.get(i).x == x && body.get(i).y == y)
+			{
+				return true;
+			}
+		}
+		return false;
+    }
+
+	public void eat(int charge)
 	{
-	   if (body.get(i).x == x && body.get(i).y == y)
-	   {
-	       return true;
-	   }
+		if (charge == 1)
+		{
+			body.add(lastPosition);
+		}	
+		else if (charge == -1)
+		{
+			lastPosition = body.get(body.size() - 1);
+			body.remove(lastPosition);
+		}
 	}
-	return false;
-    }
-    
-    public void add()
-    {
-	body.add(lastPosition);
-    }
     
     public Position getHead()
     {
-	return body.get(0);
+		return body.get(0);
     }
     
     public ArrayList<Position> getBody()
     {
-	return body;
+		return body;
     }
 }

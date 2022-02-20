@@ -11,12 +11,12 @@ public class KeyDetector implements KeyListener
     
     public KeyDetector()
     {
-	keys = new boolean[256];
+	    keys = new boolean[256];
     }
     
     public void keyControl(Snake snake)
     {
-	snake.changeDirection(keys);
+	    snake.changeDirection(keys);
     }
 
     public boolean[] getKeys()
@@ -31,11 +31,11 @@ public class KeyDetector implements KeyListener
     
     public void keyPressed(KeyEvent e)
     {
-	keys[e.getKeyCode()] = true;
+	    keys[e.getKeyCode()] = true;
     }
 
     public void keyReleased(KeyEvent e)
     {
-	keys[e.getKeyCode()] = false;
+	    keys[e.getKeyCode()] = false;
     }
 }

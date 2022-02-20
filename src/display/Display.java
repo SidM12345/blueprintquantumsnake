@@ -15,30 +15,30 @@ public class Display extends JPanel
     private BufferedImage frame;
     public Display(KeyDetector keyDetector, Stopwatch stopwatch)
     {
-	JFrame jframe = new JFrame();
-	JLabel time = stopwatch.getTimeLabel();
-	jframe.add(time, BorderLayout.NORTH);
-	jframe.setTitle("Game");
-	jframe.setSize(Launcher.WIDTH + 15, Launcher.HEIGHT + 39);
-	jframe.setResizable(false);	
-	jframe.setVisible(true);	
-	jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	jframe.add(this);
-	jframe.addKeyListener(keyDetector);
-	setLayout(new BorderLayout());
+		JFrame jframe = new JFrame();
+		JLabel time = stopwatch.getTimeLabel();
+		jframe.add(time, BorderLayout.NORTH);
+		jframe.setTitle("Game");
+		jframe.setSize(Launcher.WIDTH + 15, Launcher.HEIGHT + 39);
+		jframe.setResizable(false);	
+		jframe.setVisible(true);	
+		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jframe.add(this);
+		jframe.addKeyListener(keyDetector);
+		setLayout(new BorderLayout());
     }
     
     public void bufferFrame(BufferedImage frame)
     {
-	this.frame = frame;
+		this.frame = frame;
     }
     
     public void paintComponent(Graphics g)
     {
-	if (frame != null)
-	{
-	    g.drawImage(frame, 0, 0, Launcher.WIDTH, Launcher.HEIGHT, null);
-	}
+		if (frame != null)
+		{
+			g.drawImage(frame, 0, 0, Launcher.WIDTH, Launcher.HEIGHT, null);
+		}
     }
 	
 }
