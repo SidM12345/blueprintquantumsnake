@@ -2,8 +2,9 @@ package display;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import input.KeyDetector;
@@ -12,9 +13,11 @@ import snake.Launcher;
 public class Display extends JPanel
 {
     private BufferedImage frame;
-    public Display(KeyDetector keyDetector)
+    public Display(KeyDetector keyDetector, Stopwatch stopwatch)
     {
 	JFrame jframe = new JFrame();
+	JLabel time = stopwatch.getTimeLabel();
+	jframe.add(time);
 	jframe.setTitle("Game");
 	jframe.setSize(Launcher.WIDTH, Launcher.HEIGHT);
 	jframe.setResizable(false);	
@@ -22,6 +25,7 @@ public class Display extends JPanel
 	jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	jframe.add(this);
 	jframe.addKeyListener(keyDetector);
+	setLayout(new BorderLayout());
     }
     
     public void bufferFrame(BufferedImage frame)
@@ -36,4 +40,5 @@ public class Display extends JPanel
 	    g.drawImage(frame, 0, 0, Launcher.WIDTH, Launcher.HEIGHT, null);
 	}
     }
+	
 }

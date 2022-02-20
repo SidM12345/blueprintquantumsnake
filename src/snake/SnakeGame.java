@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import display.Stopwatch;
 import input.KeyDetector;
 
 public class SnakeGame
@@ -15,7 +16,7 @@ public class SnakeGame
     private int xLen, yLen;
     private KeyDetector kd;
     
-    public SnakeGame(int x, int y, KeyDetector kd, boolean wrap)
+    public SnakeGame(int x, int y, KeyDetector kd, boolean wrap, Stopwatch stopwatch)
     {
 	xLen = x;
 	yLen = y;

@@ -1,4 +1,5 @@
-package stopWatch;
+package display;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -29,21 +30,17 @@ public class Stopwatch implements ActionListener{
 		}
 	});
 	
-	Stopwatch(){
+	public Stopwatch(){
 		
 		timeLabel.setText(hour + ":" + min + ":" + sec);
-		timeLabel.setBounds(100,100,200,100);
+		//timeLabel.setBounds(100,100,200,100);
 		timeLabel.setFont(new Font ("Constantia", Font.PLAIN, 35));
 		timeLabel.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel.setHorizontalAlignment(JTextField.CENTER);
-		frame.add(timeLabel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(420,420);
-		frame.setLayout(null);
-		frame.setVisible(true);
+	
 	}
 
-	void start() {
+	public void start() {
 		timer.start();
 	}
 
@@ -62,7 +59,9 @@ public class Stopwatch implements ActionListener{
 	public int getHours() {
 		return hours;
 	}
-
+    public JLabel getTimeLabel() {
+        return timeLabel;
+    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

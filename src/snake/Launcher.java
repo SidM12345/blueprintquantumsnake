@@ -1,6 +1,7 @@
 package snake;
 
 import display.Display;
+import display.Stopwatch;
 import input.KeyDetector;
 
 public class Launcher
@@ -8,13 +9,16 @@ public class Launcher
     public static final int WIDTH = 800, HEIGHT = 600;
     public static void main(String[] args)
     {
+	Stopwatch stopwatch = new Stopwatch();
+	stopwatch.start();
 	KeyDetector kd = new KeyDetector();
-	Display d = new Display(kd);
-	SnakeGame game = new SnakeGame(80, 60, kd, false);
+	Display d = new Display(kd, stopwatch);
+	SnakeGame game = new SnakeGame(80, 60, kd, false, stopwatch);
 	
 	int FPS = 10;
 	
 	long lastFrame = System.currentTimeMillis();
+
 	while (true)
 	{
 	    game.controlSnake();
