@@ -10,7 +10,6 @@ import input.KeyDetector;
 
 public class SnakeGame
 {
-    private BufferedImage frame;
     private Snake snake;
     private Tile[][] tiles;
     private int xLen, yLen;
@@ -50,7 +49,6 @@ public class SnakeGame
 	    }
 	}
 	int randomIndex = (int)(Math.random() * empty.size());
-	System.out.println(randomIndex);
 	empty.get(randomIndex).setFood(true);
     }
     
@@ -65,10 +63,18 @@ public class SnakeGame
 	//update the position of the snake
 	
 	Position headPos = snake.move();
-	if (headPos.x < 0 || headPos.x > xLen || headPos.y < 0 || headPos.y > yLen)
+
+	if (headPos.x < 0 || headPos.x >= xLen || headPos.y < 0 || headPos.y >= yLen)
 	{
-	    System.out.println("You lost");
-	    System.exit(0);
+		dead();
+	}
+	ArrayList<Position> body = snake.getBody();
+	for (int i = 1; i < body.size(); i++)
+	{
+		if (headPos.x == body.get(i).x && headPos.y == body.get(i).y)
+		{
+			dead();
+		}
 	}
 	
 	if (tiles[headPos.y][headPos.x].hasFood())
@@ -76,6 +82,7 @@ public class SnakeGame
 	    tiles[headPos.y][headPos.x].setFood(false);
 	    snake.add();
 	    placeFood();
+		placeFood();
 	}
     }
     
@@ -109,4 +116,10 @@ public class SnakeGame
 	}
 	return frame;
     }
+
+	private void dead()
+	{
+		System.out.println("You died");
+		System.exit(0);
+	}
 }
