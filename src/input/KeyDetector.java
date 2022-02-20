@@ -18,6 +18,11 @@ public class KeyDetector implements KeyListener
     {
 	snake.changeDirection(keys);
     }
+
+    public boolean[] getKeys()
+    {
+        return keys;
+    }
     
     public void keyTyped(KeyEvent e)
     {
